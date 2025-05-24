@@ -9,7 +9,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky"
   },
   "dependencies": {
     "@prisma/client": "^6.8.2",
@@ -30,6 +31,8 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^8",
     "eslint-config-next": "14.2.29",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.0.0",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
