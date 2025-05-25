@@ -6,11 +6,16 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { db } from "@/lib/prisma"
-import { Search } from "lucide-react"
+import { EyeIcon, Search } from "lucide-react"
 import Image from "next/image"
 
 const Home = async () => {
   const barbershops = await db.barberShop.findMany({})
+  const popularBarbershops = await db.barberShop.findMany({
+    orderBy: {
+      name: "desc",
+    },
+  })
 
   return (
     <>
@@ -24,6 +29,33 @@ const Home = async () => {
           <Input placeholder="Faça sua busca..." />
           <Button>
             <Search />
+          </Button>
+        </div>
+
+        <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+          <Button className="gap-2" variant="secondary">
+            <Image src="/cabelo.svg" alt="cabelo" width={16} height={16} />
+            Cabelo
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image
+              src="/acabamento.svg"
+              alt="acabamento"
+              width={16}
+              height={16}
+            />
+            Acabamento
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image src="/barba.svg" alt="barba" width={16} height={16} />
+            Barba
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <EyeIcon size={16} />
+            Sobrancelha
           </Button>
         </div>
 
@@ -69,7 +101,30 @@ const Home = async () => {
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
+
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+          Populares
+        </h2>
+
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+          {popularBarbershops.map((popularBarbershop) => (
+            <BarbershopItem
+              key={popularBarbershop.id}
+              barbershop={popularBarbershop}
+            />
+          ))}
+        </div>
       </div>
+
+      <footer>
+        <Card className="rounded-none">
+          <CardContent className="px-5 py-6">
+            <p className="text-center text-sm text-gray-400">
+              © 2023 Copyright <span className="font-bold">FSW Barber</span>
+            </p>
+          </CardContent>
+        </Card>
+      </footer>
     </>
   )
 }
