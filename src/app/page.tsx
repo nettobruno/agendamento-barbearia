@@ -9,8 +9,8 @@ import { Search } from "lucide-react"
 import Image from "next/image"
 
 const Home = async () => {
-  const barbershops = await db.barberShop.findMany({})
-  const popularBarbershops = await db.barberShop.findMany({
+  const barbershops = await db.barbershop.findMany({})
+  const popularBarbershops = await db.barbershop.findMany({
     orderBy: {
       name: "desc",
     },
