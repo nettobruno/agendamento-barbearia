@@ -1,11 +1,10 @@
 import BarbershopItem from "@/components/barbershop-item"
 import BookingItem from "@/components/booking-item"
 import Header from "@/components/header"
+import Search from "@/components/search"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { quickSearchOptions } from "@/constants/search"
 import { db } from "@/lib/prisma"
-import { Search } from "lucide-react"
 import Image from "next/image"
 
 const Home = async () => {
@@ -24,11 +23,8 @@ const Home = async () => {
         <h2 className="text-xl font-bold">Olá, Bruno!</h2>
         <p className="">Domingo, 25 de maio</p>
 
-        <div className="mt-6 flex items-center gap-2">
-          <Input placeholder="Faça sua busca..." />
-          <Button>
-            <Search />
-          </Button>
+        <div className="mt-6">
+          <Search />
         </div>
 
         <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
